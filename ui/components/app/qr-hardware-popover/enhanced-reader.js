@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { BarcodeFormat, DecodeHintType } from '@zxing/library';
 import { BrowserQRCodeReader } from '@zxing/browser';
 import log from 'loglevel';
@@ -8,6 +8,7 @@ import Spinner from '../../ui/spinner';
 
 const EnhancedReader = ({ handleScan }) => {
   const [canplay, setCanplay] = useState(false);
+  const inputRef = useRef(null);
   const codeReader = useMemo(() => {
     const hint = new Map();
     hint.set(DecodeHintType.POSSIBLE_FORMATS, [BarcodeFormat.QR_CODE]);
@@ -28,6 +29,8 @@ const EnhancedReader = ({ handleScan }) => {
       'video',
       (result) => {
         if (result) {
+          console.log(result);
+          console.log(result.getText());
           handleScan(result.getText());
         }
       },
@@ -56,6 +59,16 @@ const EnhancedReader = ({ handleScan }) => {
         }}
       />
       {canplay ? null : <Spinner color="var(--color-warning-default)" />}
+      <input ref={inputRef} placeholder={'text...'} />
+      <button
+        onClick={() => {
+          const value = inputRef.current.value;
+          console.log(value);
+          handleScan(value);
+        }}
+      >
+        Submit
+      </button>
     </div>
   );
 };
