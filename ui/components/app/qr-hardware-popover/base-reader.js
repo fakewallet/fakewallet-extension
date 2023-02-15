@@ -185,20 +185,22 @@ const BaseReader = ({
 
   const renderVideo = () => {
     let message;
-    // if (ready === READY_STATE.ACCESSING_CAMERA) {
-    //   message = t('accessingYourCamera');
-    // } else 
-    if (ready === READY_STATE.READY) {
+    if (false) {
+      message = t('accessingYourCamera');
+    } else if (ready === READY_STATE.READY) {
       message = t('QRHardwareScanInstructions');
     } else if (ready === READY_STATE.NEED_TO_ALLOW_ACCESS) {
       message = t('youNeedToAllowCameraAccess');
     }
+    const ref = useRef(null);
     return (
       <>
         <div className="qr-scanner__content">
           <EnhancedReader handleScan={handleScan} />
         </div>
         {message && <div className="qr-scanner__status">{message}</div>}
+        <input ref={ref} placeholder={'or paste here'} />
+        <button onClick={() => { try { handleSuccess(URDecoder.decode(ref.current.value)) } catch { if (isReadingWallet) { setErrorTitle(t('QRHardwareUnknownQRCodeTitle')); } else { setErrorTitle(t('QRHardwareInvalidTransactionTitle')); } setError(new Error(t('unknownQrCode'))); } }}>submit</button>
       </>
     );
   };
