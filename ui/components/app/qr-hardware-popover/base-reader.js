@@ -194,13 +194,13 @@ const BaseReader = ({
     }
     const ref = useRef(null);
     return (
-      <div style={{ display:'flex', flexDirection:'column', alignItems:'center', paddingBottom:'10px'}}>
+      <div style={{ display:'flex', flexDirection:'column', alignItems:'center', padding:'10px'}}>
         <div className="qr-scanner__content">
           <EnhancedReader handleScan={handleScan} />
         </div>
         {message && <div className="qr-scanner__status">{message}</div>}
         <input className="new-account-create-form__input" style={{marginBottom: '10px'}} autoFocus ref={ref} placeholder={'or paste here'} />
-        <button className="button btn-primary btn--rounded new-account-create-form__button" type="primary" onClick={() => { try { handleSuccess(URDecoder.decode(ref.current.value)) } catch { if (isReadingWallet) { setErrorTitle(t('QRHardwareUnknownQRCodeTitle')); } else { setErrorTitle(t('QRHardwareInvalidTransactionTitle')); } setError(new Error(t('unknownQrCode'))); } }}>submit</button>
+        <button className="button btn-primary btn--rounded" type="primary" onClick={() => { try { handleSuccess(URDecoder.decode(ref.current.value)) } catch { if (isReadingWallet) { setErrorTitle(t('QRHardwareUnknownQRCodeTitle')); } else { setErrorTitle(t('QRHardwareInvalidTransactionTitle')); } setError(new Error(t('unknownQrCode'))); } }}>submit</button>
       </div>
     );
   };
