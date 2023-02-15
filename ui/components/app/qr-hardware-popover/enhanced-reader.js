@@ -5,6 +5,11 @@ import log from 'loglevel';
 import PropTypes from 'prop-types';
 import { MILLISECOND } from '../../../../shared/constants/time';
 import Spinner from '../../ui/spinner';
+import { URDecoder } from '@ngraveio/bc-ur';
+import {
+  submitQRHardwareCryptoAccount,
+  submitQRHardwareCryptoHDKey,
+} from '../../../store/actions';
 
 const EnhancedReader = ({ handleScan }) => {
   const [canplay, setCanplay] = useState(false);
@@ -61,10 +66,21 @@ const EnhancedReader = ({ handleScan }) => {
       {canplay ? null : <Spinner color="var(--color-warning-default)" />}
       <input ref={inputRef} placeholder={'text...'} />
       <button
-        onClick={() => {
+        onClick={async () => {
           const value = inputRef.current.value;
           console.log(value);
-          handleScan(value);
+
+          const urDecoder = new URDecoder();
+          urDecoder.receivePart(value);
+          const ur = urDecoder.resultUR();
+
+          console.log(ur);
+
+          if (ur.type === 'crypto-hdkey') {
+            return await submitQRHardwareCryptoHDKey(ur.cbor.toString('hex'));
+          } else if (ur.type === 'crypto-account') {
+            return await submitQRHardwareCryptoAccount(ur.cbor.toString('hex'));
+          }
         }}
       >
         Submit
