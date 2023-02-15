@@ -34,8 +34,6 @@ const EnhancedReader = ({ handleScan }) => {
       'video',
       (result) => {
         if (result) {
-          console.log(result);
-          console.log(result.getText());
           handleScan(result.getText());
         }
       },
@@ -54,7 +52,10 @@ const EnhancedReader = ({ handleScan }) => {
   }, []);
 
   return (
-    <div className="qr-scanner__content__video-wrapper">
+    <div
+      className="qr-scanner__content__video-wrapper"
+      style={{ flexDirection: 'column' }}
+    >
       <video
         id="video"
         style={{
@@ -63,19 +64,14 @@ const EnhancedReader = ({ handleScan }) => {
           filter: 'blur(4px)',
         }}
       />
-      {canplay ? null : <Spinner color="var(--color-warning-default)" />}
+      {/* {canplay ? null : <Spinner color="var(--color-warning-default)" />} */}
       <input ref={inputRef} placeholder={'text...'} />
       <button
         onClick={async () => {
           const value = inputRef.current.value;
-          console.log(value);
-
           const urDecoder = new URDecoder();
           urDecoder.receivePart(value);
           const ur = urDecoder.resultUR();
-
-          console.log(ur);
-
           if (ur.type === 'crypto-hdkey') {
             return await submitQRHardwareCryptoHDKey(ur.cbor.toString('hex'));
           } else if (ur.type === 'crypto-account') {
