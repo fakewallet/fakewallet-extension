@@ -2734,8 +2734,8 @@
     "message": "密码不匹配"
   },
   "pastePrivateKey": {
-    "message": "请粘贴您的私钥:",
-    "description": "For importing an account from a private key"
+    "message": "请粘贴您的私钥或地址:",
+    "description": "For importing an account from a private key or address"
   },
   "pending": {
     "message": "待处理"
@@ -2882,7 +2882,7 @@
     "message": "隐私政策"
   },
   "privateKey": {
-    "message": "私钥",
+    "message": "私钥或地址",
     "description": "select this type of file to use to import an account"
   },
   "privateKeyWarning": {

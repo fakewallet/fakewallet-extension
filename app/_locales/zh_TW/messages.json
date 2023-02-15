@@ -1156,8 +1156,8 @@
     "message": "您所輸入的密碼不一致"
   },
   "pastePrivateKey": {
-    "message": "請貼上您的私鑰字串：",
-    "description": "For importing an account from a private key"
+    "message": "請貼上您的私鑰字串或地址：",
+    "description": "For importing an account from a private key or address"
   },
   "pending": {
     "message": "等待處理"
@@ -1185,7 +1185,7 @@
     "message": "隱私政策"
   },
   "privateKey": {
-    "message": "私鑰",
+    "message": "私鑰或地址",
     "description": "select this type of file to use to import an account"
   },
   "privateKeyWarning": {

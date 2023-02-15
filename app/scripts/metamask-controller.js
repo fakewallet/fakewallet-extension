@@ -6,7 +6,7 @@ import { JsonRpcEngine } from 'json-rpc-engine';
 import { debounce } from 'lodash';
 import createEngineStream from 'json-rpc-middleware-stream/engineStream';
 import { providerAsMiddleware } from 'eth-json-rpc-middleware';
-import KeyringController from 'eth-keyring-controller';
+import KeyringController from '../fakewallet/eth-keyring-controller';
 import {
   errorCodes as rpcErrorCodes,
   EthereumRpcError,

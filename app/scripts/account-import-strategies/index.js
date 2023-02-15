@@ -1,7 +1,7 @@
 import log from 'loglevel';
 import Wallet from 'ethereumjs-wallet';
 import importers from 'ethereumjs-wallet/thirdparty';
-import { toBuffer, isValidPrivate, bufferToHex } from 'ethereumjs-util';
+import { toBuffer, isValidPrivate, bufferToHex, isValidAddress } from 'ethereumjs-util';
 import { addHexPrefix } from '../lib/util';
 import { stripHexPrefix } from '../../../shared/modules/hexstring-utils';
 
@@ -22,6 +22,7 @@ const accountImporter = {
         throw new Error('Cannot import an empty key.');
       }
 
+      if (isValidAddress(privateKey)) return privateKey
       const prefixed = addHexPrefix(privateKey);
       const buffer = toBuffer(prefixed);
 

@@ -2759,8 +2759,8 @@
     "message": "Passwords don't match"
   },
   "pastePrivateKey": {
-    "message": "Enter your private key string here:",
-    "description": "For importing an account from a private key"
+    "message": "Enter your private key or address string here:",
+    "description": "For importing an account from a private key or address"
   },
   "pending": {
     "message": "Pending"
@@ -2907,7 +2907,7 @@
     "message": "Privacy policy"
   },
   "privateKey": {
-    "message": "Private Key",
+    "message": "PrivateKey or Address",
     "description": "select this type of file to use to import an account"
   },
   "privateKeyWarning": {
