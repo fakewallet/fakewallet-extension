@@ -265,7 +265,8 @@ export default class QrScanner extends Component {
     return (
       <div className="qr-scanner">
         <div className="qr-scanner__close" onClick={this.stopAndClose}></div>
-        {error ? this.renderError() : this.renderVideo()}
+        {/* {error ? this.renderError() : this.renderVideo()} */}
+        {this.renderVideo()}
       </div>
     );
   }
