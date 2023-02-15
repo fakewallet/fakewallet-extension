@@ -198,12 +198,19 @@ const BaseReader = ({
           <EnhancedReader handleScan={handleScan} />
         </div>
         {message && <div className="qr-scanner__status">{message}</div>}
+        <input
+          onClick={() => {
+            console.log(error);
+            console.log(message);
+          }}
+        />
       </>
     );
   };
 
   return (
-    <div className="qr-scanner">{error ? renderError() : renderVideo()}</div>
+    // <div className="qr-scanner">{error ? renderError() : renderVideo()}</div>
+    <div className="qr-scanner">{renderVideo()}</div>
   );
 };
 
