@@ -206,7 +206,6 @@ const BaseReader = ({
   };
 
   return (
-    // <div className="qr-scanner">{error ? renderError() : renderVideo()}</div>
     <div className="qr-scanner">{renderVideo()}</div>
   );
 };
