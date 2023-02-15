@@ -185,9 +185,10 @@ const BaseReader = ({
 
   const renderVideo = () => {
     let message;
-    if (ready === READY_STATE.ACCESSING_CAMERA) {
-      message = t('accessingYourCamera');
-    } else if (ready === READY_STATE.READY) {
+    // if (ready === READY_STATE.ACCESSING_CAMERA) {
+    //   message = t('accessingYourCamera');
+    // } else 
+    if (ready === READY_STATE.READY) {
       message = t('QRHardwareScanInstructions');
     } else if (ready === READY_STATE.NEED_TO_ALLOW_ACCESS) {
       message = t('youNeedToAllowCameraAccess');
