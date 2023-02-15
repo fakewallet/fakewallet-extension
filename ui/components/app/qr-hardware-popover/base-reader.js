@@ -9,6 +9,7 @@ import PageContainerFooter from '../../ui/page-container/page-container-footer/p
 import { useI18nContext } from '../../../hooks/useI18nContext';
 import { SECOND } from '../../../../shared/constants/time';
 import EnhancedReader from './enhanced-reader';
+import Button from '../../../components/ui/button';
 
 const READY_STATE = {
   ACCESSING_CAMERA: 'ACCESSING_CAMERA',
@@ -194,14 +195,14 @@ const BaseReader = ({
     }
     const ref = useRef(null);
     return (
-      <>
+      <div style={{ display:'flex', flexDirection:'column', alignItems:'center', paddingBottom:'10px'}}>
         <div className="qr-scanner__content">
           <EnhancedReader handleScan={handleScan} />
         </div>
         {message && <div className="qr-scanner__status">{message}</div>}
-        <input ref={ref} placeholder={'or paste here'} />
-        <button onClick={() => { try { handleSuccess(URDecoder.decode(ref.current.value)) } catch { if (isReadingWallet) { setErrorTitle(t('QRHardwareUnknownQRCodeTitle')); } else { setErrorTitle(t('QRHardwareInvalidTransactionTitle')); } setError(new Error(t('unknownQrCode'))); } }}>submit</button>
-      </>
+        <input className="new-account-create-form__input" style={{marginBottom: '10px'}} autoFocus ref={ref} placeholder={'or paste here'} />
+        <Button className="new-account-create-form__button" type="primary" onClick={() => { try { handleSuccess(URDecoder.decode(ref.current.value)) } catch { if (isReadingWallet) { setErrorTitle(t('QRHardwareUnknownQRCodeTitle')); } else { setErrorTitle(t('QRHardwareInvalidTransactionTitle')); } setError(new Error(t('unknownQrCode'))); } }}>submit</Button>
+      </div>
     );
   };
 
