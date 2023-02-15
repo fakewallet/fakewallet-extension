@@ -32,6 +32,10 @@ const accountImporter = {
       const stripped = stripHexPrefix(prefixed);
       return stripped;
     },
+    'Address': (address) => {
+      if (!address) throw new Error('Cannot import an empty address.');
+      return address;
+    },
     'JSON File': (input, password) => {
       let wallet;
       try {
